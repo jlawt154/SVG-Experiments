@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name, Star and other Shapes with SVGs</title>
+    <style>
+        polyline {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
+        @keyframes small {
+            from {
+                transform:scale(100%);
+            }
+            to {
+                transform:scale(20%);
+
+            }
+        }
+        @keyframes large {
+            from {
+                transform:scale(100%);
+                transform:translateX(0);
+                transform:translateY(0);
+                opacity:0%;
+            }
+            to {
+                transform:translateX(-225px) scale(190%) translateY(25px);
+            } 
+        }
+        @keyframes lines {
+            0% {
+                stroke-dashoffset: 1000;
+            }
+            50% {
+                stroke-dashoffset: 500;
+            }
+            100% {
+                stroke-dashoffset: 1000;
+            }
+        }
+        @keyframes appear {
+            0% {
+                opacity:(0);
+            }
+            50% {
+                opacity:(0);
+            }
+            100% {
+                opacity:(100);
+            }
+        }
+        @keyframes smalL {
+            0% {
+                transform:scale(100%);
+            }
+            75% {
+                transform:scale(20%);
+
+            }
+            100% {
+                transform:scale(100%);
+            }
+        }
+        #star {
+            animation: small 2s linear forwards;
+        }
+        .letter {
+            animation: large 3s linear forwards, lines 3s linear infinite;
+        }
+        circle {
+            animation: smalL 5s ease-in-out forwards;
+        }
+        circle:hover {
+            fill:black;
+            opacity:50%;
+        }
+        div {
+            background-image: url(https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png);
+            background-size:contain;
+        }
+    </style>
+</head>
+<body>
+    <svg width="800" height="600" style="background-color:darkblue" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="250,3 550,3 400,300"
+        style="fill:red; stroke: black; stroke-width: 5px;"/>
+        <polygon points="250,597 550,597 400,300"
+        style="fill:red; stroke: black; stroke-width: 5px;"/> 
+        <circle id="circle" cx="50%" cy="50%" r="30%" fill="red" stroke="black" stroke-width="5px"/>
+        <polyline 
+        id="star"
+        points="400,100 500,450 225,250 575,250 300,450 400,100"
+        style="fill:yellow; stroke: black; stroke-width: 0;"
+        />
+        <polyline
+        class="letter"
+        points="250,100 250,150 225,150 225,125"
+        style="fill:none; stroke:black; stroke-width:5px;" 
+        />
+        <polyline
+        class="letter"
+        points="270,150 300,100 330,150 315,125 285,125"
+        style="fill:none; stroke:black; stroke-width:5px;" 
+        />
+        <polyline
+        class="letter"
+        points="350,100 350,125 375,100 350,125 375,150 350,125 350,150"
+        style="fill:none; stroke:black; stroke-width:5px;" 
+        />
+        <polyline
+        class="letter"
+        points="400,150 425,150 400,150 400,125 425,125 400,125 400,100 425,100"
+        style="fill:none; stroke:black; stroke-width:5px;" 
+        />
+    </svg>
+    <script>
+        const circle = document.getElementById("circle");
+        circle.addEventListener("mouseover",(event)=>{
+            event.target.style.fill="green";
+            const newDiv = document.createElement("div");
+            circle.appendChild('div')
+            event.target.div.style.backgroundImage="https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png";
+        //     setTimeout(()=> {
+        //    event.target.style.fill="";     
+        //     }, 5000);
+        }
+        );
+        circle.addEventListener("mouseout", (event) => {
+            event.target.style.fill="red";
+        });
+    </script>
+</body>
+</html>
